@@ -23,9 +23,10 @@ async def send_channels(callback: types.CallbackQuery, state: FSMContext):
 
 @dp.message_handler(state=State.entering_support_message, content_types=['any'])
 async def receive_check(message: types.Message, state: FSMContext):
+    message_to_send = add_header_to_mes(message)
     for id in ADMIN_IDS:
         try:
-            await (add_header_to_mes(message)).send_copy(id)
+            await message_to_send.send_copy(id)
         except Exception as e:
             print(e)
     await message.answer(texts.message_accepted)
