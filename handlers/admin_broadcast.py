@@ -31,6 +31,7 @@ async def send_channels(callback: types.CallbackQuery, state: FSMContext):
 async def confirm(message: types.Message, state: FSMContext):
     
     ids = logic.get_all_redis_keys()
+    print(ids)
     for id in ids:
         try:
             await message.send_copy(id)
