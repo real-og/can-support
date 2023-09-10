@@ -9,7 +9,8 @@ import keyboards as kb
 
 @dp.message_handler(filters.IsReplyFilter(types.Message()),
                     filters.IDFilter(chat_id=ADMIN_IDS),
-                    state='*')
+                    state='*',
+                    content_types=['any'])
 async def confirm(message: types.Message):
     if message.reply_to_message.text:
         id_sender = message.reply_to_message.text.split(' ')[0]
